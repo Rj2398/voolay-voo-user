@@ -7,7 +7,7 @@ import { useAuth } from "@/app/UserProvider";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { BASE_URL } from "@/constant/constant";
-// import AuthModal from "../AuthRequired/AuthModal";
+// import AuthModal from "../../components/custom/AuthModal";
 
 async function getData(id: any) {
   const formData = new FormData();
@@ -31,7 +31,7 @@ async function getData(id: any) {
 
 const Header = () => {
   const { isAuthenticated, userDetails } = useAuth();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState<any>(true);
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathName = usePathname();
@@ -42,7 +42,9 @@ const Header = () => {
     if (!isAuthenticated) {
       e.preventDefault();
       // router.push(`/login?lastPath=${pathName}`);
-      router.push("/login");
+      // router.push("/login");
+
+      router.push("/auth-users");
     }
   };
 
@@ -176,7 +178,7 @@ const Header = () => {
           </div>
         </div>
       </nav>
-      {/* <AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} /> */}
+      {/* <AuthModal isOpen={isModalOpen} onClose={(txt) => setIsModalOpen(txt)} /> */}
     </>
   );
 };

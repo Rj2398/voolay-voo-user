@@ -1,62 +1,70 @@
-// components/AuthModal.js
-import { useState } from "react";
-import { createPortal } from "react-dom"; // To render modal outside of the main DOM hierarchy
-import Link from "next/link";
+// import { useEffect } from "react";
+// // import Modal from "react-modal";
 
-const AuthModal = ({ isOpen, onClose }) => {
-  console.log(isOpen, "hello modalll");
-  if (!isOpen) return null; // Do not render modal if not open
+// const AuthModal = ({ isOpen, onClose }) => {
+//   console.log(isOpen, "is open");
 
-  return (
-    <div style={modalOverlayStyle}>
-      <div style={modalWrapperStyle}>
-        <div style={modalStyle}>
-          <div style={modalHeaderStyle}>
-            <Link href="#" onClick={onClose}>
-              x
-            </Link>
-          </div>
+//   // Custom styles for the modal, including transition for the animation
+//   const customStyles = {
+//     content: {
+//       top: "0%", // Start from the top (animation will handle transition)
+//       left: "50%",
+//       right: "auto",
+//       bottom: "auto",
+//       marginRight: "-50%",
+//       transform: "translate(-50%, 0%)", // Adjust the centering during animation
+//       borderRadius: "15px", // Rounded corners
+//       transition: "transform 0.5s ease-out", // Smooth animation
+//     },
+//     overlay: {
+//       backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent background, not blurred
+//     },
+//   };
 
-          <div style={modalBodyStyle}>{}</div>
-        </div>
-      </div>
-    </div>
-  );
-};
+//   return (
+//     <Modal
+//       isOpen={isOpen}
+//       onRequestClose={onClose}
+//       style={customStyles}
+//       contentLabel="Logout Modal"
+//       onAfterOpen={() => {
+//         document.querySelector(".ReactModal__Content").style.transform =
+//           "translate(-50%, 20%)";
+//       }}
+//     >
+//       <div className="modal-dialog modal-dialog-edit" role="document">
+//         <div className="modal-content">
+//           <div className="modal-heading">
+//             <button
+//               type="button"
+//               className="btn-close"
+//               onClick={() => onClose(false)}
+//               aria-label="Close"
+//             ></button>
+//           </div>
+//           <div className="modal-body">
+//             <form>
+//               <div className="profileverify-popup-wrap">
+//                 <h1>Logout</h1>
+//                 <p>Are you sure you want to logout?</p>
+//                 <div className="delete-account-btns">
+//                   <button
+//                     type="button"
+//                     onClick={() => console.log("Logging out")}
+//                   >
+//                     Yes
+//                   </button>
+//                   <button type="button" onClick={() => onClose(false)}>
+//                     No
+//                   </button>
+//                 </div>
+//               </div>
+//             </form>
+//           </div>
+//         </div>
+//       </div>
+//     </Modal>
+//   );
+// };
 
-const modalWrapperStyle = {
-  width: "500px",
-  height: "600px",
-};
-
-const modalStyle = {
-  background: "white",
-  height: "100%",
-  width: "100%",
-  borderRadius: "15px",
-  padding: "15px",
-};
-
-const modalOverlayStyle = {
-  position: "absolute",
-  top: "0",
-  left: "0",
-  width: "100%",
-  height: "100%",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  backgroundColor: "rgba(0, 0, 0, 0.5)",
-};
-
-const modalBodyStyle = {
-  paddingTop: "10px",
-};
-
-const modalHeaderStyle = {
-  display: "flex",
-  justifyContent: "flex-end",
-  fontSize: "25px",
-};
-
-export default AuthModal;
+// export default AuthModal;

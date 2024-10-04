@@ -1,4 +1,4 @@
-// File: /Users/rajanmalakar/Downloads/RajanWorking/webFolder/voolay-voo-user/voolay-voo-user/src/app/(onboard)/login/page.tsx
+// File: /Users/rajanmalakar/Downloads/RajanWorking/webFolder/voolayvoo_user/voolay-voo-user/src/app/(onboard)/login/page.tsx
 import * as entry from '../../../../../src/app/(onboard)/login/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
