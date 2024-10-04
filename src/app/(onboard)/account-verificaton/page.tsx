@@ -2,7 +2,7 @@
 import { Suspense, useState } from "react";
 import { useRef } from "react";
 import Image from "next/image";
-import { useForm, useFieldArray } from "react-hook-form";
+import { useForm, useFieldArray, Controller } from "react-hook-form";
 
 import Dialog from "./components/success";
 import useLocalStorage, { removeStorage } from "@/constant/useLocalStorage";
@@ -164,21 +164,28 @@ const AccountVerificaton = () => {
                           ref={formElement}
                         >
                           <div className="otp-verification-input">
-                            {fields?.map((item, index) => {
-                              return (
-                                <input
-                                  {...register(`otp.${index}.code`, {
-                                    required: true,
-                                    pattern: /[0-9]/,
-                                  })}
-                                  maxLength={1}
-                                  key={item.id}
-                                  className="inputs"
-                                  // ref={(el) => (inputRefs.current[index] = el)}
-                                  onChange={(e) => handleInputChange(e, index)}
-                                />
-                              );
-                            })}
+                            {fields.map((item, index) => (
+                              <Controller
+                                key={item.id}
+                                name={`otp.${index}.code`}
+                                control={control}
+                                rules={{ required: true, pattern: /[0-9]/ }}
+                                render={({ field }) => (
+                                  <input
+                                    {...field}
+                                    maxLength={1}
+                                    className="inputs"
+                                    ref={(el) => {
+                                      inputRefs.current[index] = el;
+                                    }}
+                                    onChange={(e) => {
+                                      field.onChange(e);
+                                      handleInputChange(e, index);
+                                    }}
+                                  />
+                                )}
+                              />
+                            ))}
                           </div>
                           <a
                             onClick={() => formElement.current?.requestSubmit()}
